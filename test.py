@@ -259,6 +259,21 @@ def test_speckle_noise(images):
     return transformations
 
 
+def test__create_x_y_mesh(images):
+    """
+    Test method for the the _create_x_y_mesh method of the augmentor class.
+
+    :param images: The images to generate a mesh from.
+    :return: Numpy array of x-y meshes.
+    """
+    meshes = []
+    for image in images:
+        mesh = augmentor._create_x_y_mesh(image)
+        meshes.append(mesh)
+
+    return meshes
+
+
 #####################################
 # Helper formatting methods
 #####################################
@@ -279,39 +294,44 @@ def announcment(method):
     print("#" * len(annc), end="\n\n")
 
 
-def get_images(path):
-    image_file_paths = get_directory_contents(path)
+def get_images(path, show=True):
     # Getting image paths
-    print("found the images:")
-    for path in image_file_paths:
-        print("\t{}".format(path))
+    image_file_paths = get_directory_contents(path)
+    if show:
+        print("Found the images:")
+        for path in image_file_paths:
+            print("\t{}".format(path))
 
-    print()
+        print()
 
     return image_file_paths
 
 
-def load_images(image_file_paths):
+def load_images(image_file_paths, show=True):
     announcment("load")
-    print("Loading the images...")
+    if show:
+        print("Loading the images...")
     images = test_load(image_file_paths)
-    print("Done.", end="\n\n")
+    if show:
+        print("Done.", end="\n\n")
 
     return images
 
 
-def corners(images):
+def corners(images, show=True):
     announcment("_get_corners")
     corners = test_get_corners(images)
-    for corner in corners:
-        print("found corner:\n{}".format(corner), end="\n\n")
+    if show:
+        for corner in corners:
+            print("Found corner:\n{}".format(corner), end="\n\n")
 
 
-def points():
+def points(show=True):
     announcment("_get_rand_points")
     points = test__get_rand_points()
-    for point in points:
-        print("Created point:\n{}".format(point), end="\n\n")
+    if show:
+        for point in points:
+            print("Created point:\n{}".format(point), end="\n\n")
 
 
 def perspective_transform(images, show=True):
@@ -397,11 +417,20 @@ def gaussian_noise(images, show=True):
     if show:
         show_images(images)
 
+
 def speckle_noise(images, show=True):
     announcment("speckle_noise")
     images = test_speckle_noise(images)
     if show:
         show_images(images)
+
+
+def mesh(images, show=True):
+    announcment("_create_x_y_mesh")
+    meshes = test__create_x_y_mesh(images)
+    if show:
+        for mesh in meshes:
+            print("Created mesh:\n{}".format(mesh), end="\n\n")
 
 
 if __name__ == '__main__':
@@ -426,4 +455,5 @@ if __name__ == '__main__':
     # median_blur(images)
     # gaussian_blur(images)
     # gaussian_noise(images)
-    speckle_noise(images)
+    # speckle_noise(images)
+    mesh(images)
