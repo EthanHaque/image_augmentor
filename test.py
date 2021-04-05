@@ -228,6 +228,7 @@ def test_gaussian_blur(images):
 
     return transformations
 
+
 def test_gaussian_noise(images):
     """
     Test method for the gaussian_noise method of the augmentor class.
@@ -243,14 +244,32 @@ def test_gaussian_noise(images):
     return transformations
 
 
+def test_speckle_noise(images):
+    """
+    Test method for the speckle_noise method of the augmentor class.
+
+    :param images: The images to transform.
+    :return: List of cv2 image objects with the speckle noise applied.
+    """
+    transformations = []
+    for image in images:
+        transformed = augmentor.speckle_noise(image, 2, 0.5)
+        transformations.append(transformed)
+
+    return transformations
+
+
 #####################################
 # Helper formatting methods
 #####################################
 
 def show_images(images):
-    for image in images:
+    size = len(images)
+    for i, image in enumerate(images):
+        plt.subplot(1, size, i + 1)
         plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-        plt.show()
+
+    plt.show()
 
 
 def announcment(method):
@@ -364,6 +383,7 @@ def median_blur(images, show=True):
     if show:
         show_images(images)
 
+
 def gaussian_blur(images, show=True):
     announcment("gaussian_blur")
     images = test_gaussian_blur(images)
@@ -374,6 +394,12 @@ def gaussian_blur(images, show=True):
 def gaussian_noise(images, show=True):
     announcment("gaussian_noise")
     images = test_gaussian_noise(images)
+    if show:
+        show_images(images)
+
+def speckle_noise(images, show=True):
+    announcment("speckle_noise")
+    images = test_speckle_noise(images)
     if show:
         show_images(images)
 
@@ -399,4 +425,5 @@ if __name__ == '__main__':
     # average_blur(images)
     # median_blur(images)
     # gaussian_blur(images)
-    gaussian_noise(images)
+    # gaussian_noise(images)
+    speckle_noise(images)
