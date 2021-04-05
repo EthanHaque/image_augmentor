@@ -131,7 +131,7 @@ def test_affine_transformation(images):
     :return: List of cv2 image objects with the affine transformation
     """
     transformations = []
-    kernel = np.array([0.9, 0, 10], [0, 0.75, 20]).astype('float32')
+    kernel = np.array([[0.9, 0, 10], [0, 0.75, 20]]).astype('float32')
     for image in images:
         transformed = augmentor.affine_transformation(image, kernel)
         transformations.append(transformed)
@@ -217,6 +217,7 @@ def vertical(images, show=True):
     images = test_vertical_squeeze(images)
     if show:
         show_images(images)
+
 
 def affine(images, show=True):
     announcment("affine_transformation")
