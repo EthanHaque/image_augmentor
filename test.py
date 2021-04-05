@@ -290,6 +290,36 @@ def test_distort_with_noise(images):
     return distorted
 
 
+def test_gaussian_noise_distortion_2d(images):
+    """
+    Test method for the the gaussian_noise_distortion_2d method of the augmentor class.
+
+    :param images: The images to distort with a mesh.
+    :return: List of cv2 image objects with the gaussian noise distortions applied.
+    """
+    distorted = []
+    for image in images:
+        distort = augmentor.gaussian_noise_distortion_2d(image, 20, 20)
+        distorted.append(distort)
+
+    return distorted
+
+
+def test_gaussian_noise_distortion_1d(images):
+    """
+    Test method for the the gaussian_noise_distortion_1d method of the augmentor class.
+
+    :param images: The images to distort with a mesh.
+    :return: List of cv2 image objects with the gaussian noise distortions applied.
+    """
+    distorted = []
+    for image in images:
+        distort = augmentor.gaussian_noise_distortion_1d(image, 20, 20)
+        distorted.append(distort)
+
+    return distorted
+
+
 #####################################
 # Helper formatting methods
 #####################################
@@ -456,6 +486,20 @@ def distort(images, show=True):
         show_images(images)
 
 
+def gauss_2d(images, show=True):
+    announcment("gaussian_noise_distortion_2d")
+    images = test_gaussian_noise_distortion_2d(images)
+    if show:
+        show_images(images)
+
+
+def gauss_1d(images, show=True):
+    announcment("gaussian_noise_distortion_1d")
+    images = test_gaussian_noise_distortion_1d(images)
+    if show:
+        show_images(images)
+
+
 if __name__ == '__main__':
     paths = get_images("./images")
     images = load_images(paths)
@@ -480,4 +524,6 @@ if __name__ == '__main__':
     # gaussian_noise(images)
     # speckle_noise(images)
     # mesh(images)
-    distort(images)
+    # distort(images)
+    # gauss_2d(images)
+    gauss_1d(images)
