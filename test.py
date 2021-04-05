@@ -128,7 +128,7 @@ def test_affine_transformation(images):
     Test method for the affine_transformation method of the augmentor class.
 
     :param images: The images to transform.
-    :return: Images with the affine transformation
+    :return: List of cv2 image objects with the affine transformation
     """
 
 
