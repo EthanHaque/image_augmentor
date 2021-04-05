@@ -274,6 +274,22 @@ def test__create_x_y_mesh(images):
     return meshes
 
 
+def test_distort_with_noise(images):
+    """
+    Test method for the the distort_with_noise method of the augmentor class.
+
+    :param images: The images to distort with a mesh.
+    :return: List of cv2 image objects with the distortions applied.
+    """
+    distorted = []
+    for image in images:
+        mesh = np.random.rand(*image.shape[0:2]) * 100
+        distort = augmentor.distort_with_noise(image, mesh)
+        distorted.append(distort)
+
+    return distorted
+
+
 #####################################
 # Helper formatting methods
 #####################################
@@ -433,6 +449,13 @@ def mesh(images, show=True):
             print("Created mesh:\n{}".format(mesh), end="\n\n")
 
 
+def distort(images, show=True):
+    announcment("distort_with_noise")
+    images = test_distort_with_noise(images)
+    if show:
+        show_images(images)
+
+
 if __name__ == '__main__':
     paths = get_images("./images")
     images = load_images(paths)
@@ -456,4 +479,5 @@ if __name__ == '__main__':
     # gaussian_blur(images)
     # gaussian_noise(images)
     # speckle_noise(images)
-    mesh(images)
+    # mesh(images)
+    distort(images)
