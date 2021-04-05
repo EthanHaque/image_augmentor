@@ -93,9 +93,45 @@ def test_warp_corners(images):
     return transformations
 
 
+def test_horizontal_squeeze(images):
+    """
+    Test method for the horizontal_squeeze method of the augmentor class.
+
+    :param images: The images to transform.
+    :return: Images with the corners warped in the horizontal direction.
+    """
+    transformations = []
+    for image in images:
+        transformed = augmentor.horizontal_squeeze(image, augmentor._get_rand_points(0, 0.25, [4]))
+        transformations.append(transformed)
+
+    return transformations
+
+
+def test_vertical_squeeze(images):
+    """
+    Test method for the vertical_squeeze method of the augmentor class.
+
+    :param images: The images to transform.
+    :return: Images with the corners warped in the vertical direction.
+    """
+    transformations = []
+    for image in images:
+        transformed = augmentor.vertical_squeeze(image, augmentor._get_rand_points(0, 0.25, [4]))
+        transformations.append(transformed)
+
+    return transformations
+
+
 #####################################
 # Helper formatting methods
 #####################################
+
+def show_images(images):
+    for image in images:
+        plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+        plt.show()
+
 
 def announcment(method):
     annc = "# Testing {}".format(method)
@@ -120,7 +156,7 @@ def load_images(image_file_paths):
     announcment("load")
     print("Loading the images...")
     images = test_load(image_file_paths)
-    print("Done", end="\n\n")
+    print("Done.", end="\n\n")
 
     return images
 
@@ -143,18 +179,28 @@ def perspective_transform(images, show=True):
     announcment("perspective_transformation")
     images = test_perspective_transformation(images)
     if show:
-        for image in images:
-            plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-            plt.show()
+        show_images(images)
 
 
 def warp(images, show=True):
     announcment("warp_corners")
     images = test_warp_corners(images)
     if show:
-        for image in images:
-            plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-            plt.show()
+        show_images(images)
+
+
+def horizontal(images, show=True):
+    announcment("horizontal_squeeze")
+    images = test_horizontal_squeeze(images)
+    if show:
+        show_images(images)
+
+
+def vertical(images, show=True):
+    announcment("vertical_squeeze")
+    images = test_vertical_squeeze(images)
+    if show:
+        show_images(images)
 
 
 if __name__ == '__main__':
@@ -165,7 +211,9 @@ if __name__ == '__main__':
     # TESTS
     #######
 
-    corners(images)
-    points()
-    perspective_transform(images)
-    warp(images)
+    # corners(images)
+    # points()
+    # perspective_transform(images)
+    # warp(images)
+    # horizontal(images)
+    # vertical(images)
