@@ -184,6 +184,19 @@ def test_scale(images):
     return transformations
 
 
+def test_average_blur(images):
+    """
+    Test method for the average_blur method of the augmentor class.
+
+    :param images: The images to transform.
+    :return: List of cv2 image objects with the average blur applied.
+    """
+    transformations = []
+    for image in images:
+        transformed = augmentor.average_blur(image, 10)
+        transformations.append(transformed)
+
+    return transformations
 
 
 #####################################
@@ -294,6 +307,13 @@ def scale(images, show=True):
         show_images(images)
 
 
+def average_blur(images, show=True):
+    announcment("average_blur")
+    images = test_average_blur(images)
+    if show:
+        show_images(images)
+
+
 if __name__ == '__main__':
     paths = get_images("./images")
     images = load_images(paths)
@@ -311,4 +331,5 @@ if __name__ == '__main__':
     # affine(images)
     # translate(images)
     # rotate(images)
-    scale(images)
+    # scale(images)
+    average_blur(images)
