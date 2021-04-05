@@ -335,6 +335,16 @@ def test_threshold(images):
     return thresholds
 
 
+def test_save_image(images):
+    """
+    Test method for the save_image method of the augmentor class.
+
+    :param images: The images to save.
+    """
+    for i, image in enumerate(images):
+        augmentor.save_image(image, "./out_images/{}.jpg".format(i))
+
+
 #####################################
 # Helper formatting methods
 #####################################
@@ -527,6 +537,11 @@ def threshold(images, show=True):
         plt.show()
 
 
+def save(images):
+    announcment("gaussian_noise_distortion_1d")
+    test_save_image(images)
+
+
 if __name__ == '__main__':
     paths = get_images("./images")
     images = load_images(paths)
@@ -554,4 +569,5 @@ if __name__ == '__main__':
     # distort(images)
     # gauss_2d(images)
     # gauss_1d(images)
-    threshold(images)
+    # threshold(images)
+    save(images)
