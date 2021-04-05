@@ -223,7 +223,21 @@ def test_gaussian_blur(images):
     """
     transformations = []
     for image in images:
-        transformed = augmentor.gaussian_blur(image, 2, 2)
+        transformed = augmentor.gaussian_blur(image, 2, 3)
+        transformations.append(transformed)
+
+    return transformations
+
+def test_gaussian_noise(images):
+    """
+    Test method for the gaussian_noise method of the augmentor class.
+
+    :param images: The images to transform.
+    :return: List of cv2 image objects with the gaussian noise applied.
+    """
+    transformations = []
+    for image in images:
+        transformed = augmentor.gaussian_noise(image, 2, 0.5)
         transformations.append(transformed)
 
     return transformations
@@ -345,7 +359,7 @@ def average_blur(images, show=True):
 
 
 def median_blur(images, show=True):
-    announcment("test_median_blur")
+    announcment("median_blur")
     images = test_median_blur(images)
     if show:
         show_images(images)
@@ -353,6 +367,13 @@ def median_blur(images, show=True):
 def gaussian_blur(images, show=True):
     announcment("gaussian_blur")
     images = test_gaussian_blur(images)
+    if show:
+        show_images(images)
+
+
+def gaussian_noise(images, show=True):
+    announcment("gaussian_noise")
+    images = test_gaussian_noise(images)
     if show:
         show_images(images)
 
@@ -377,4 +398,5 @@ if __name__ == '__main__':
     # scale(images)
     # average_blur(images)
     # median_blur(images)
-    gaussian_blur(images)
+    # gaussian_blur(images)
+    gaussian_noise(images)
