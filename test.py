@@ -199,6 +199,21 @@ def test_average_blur(images):
     return transformations
 
 
+def test_median_blur(images):
+    """
+    Test method for the median_blur method of the augmentor class.
+
+    :param images: The images to transform.
+    :return: List of cv2 image objects with the median blur applied.
+    """
+    transformations = []
+    for image in images:
+        transformed = augmentor.median_blur(image, 3)
+        transformations.append(transformed)
+
+    return transformations
+
+
 #####################################
 # Helper formatting methods
 #####################################
@@ -314,6 +329,13 @@ def average_blur(images, show=True):
         show_images(images)
 
 
+def median_blur(images, show=True):
+    announcment("test_median_blur")
+    images = test_median_blur(images)
+    if show:
+        show_images(images)
+
+
 if __name__ == '__main__':
     paths = get_images("./images")
     images = load_images(paths)
@@ -332,4 +354,5 @@ if __name__ == '__main__':
     # translate(images)
     # rotate(images)
     # scale(images)
-    average_blur(images)
+    # average_blur(images)
+    # median_blur(images)

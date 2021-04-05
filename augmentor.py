@@ -250,7 +250,7 @@ def median_blur(input_image, strength):
 
     :param input_image: The image to blur.
     :param strength: The size of the burring filter to apply to the image. The larger the matrix, the larger the
-    area sampled to take the median over is.
+    area sampled to take the median over is. Must be odd
     :return: The image with the median blur applied.
     """
     median = cv2.medianBlur(input_image, strength)
