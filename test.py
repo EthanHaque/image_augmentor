@@ -320,6 +320,21 @@ def test_gaussian_noise_distortion_1d(images):
     return distorted
 
 
+def test_threshold(images):
+    """
+    Test method for the threshold method of the augmentor class.
+
+    :param images: The images to apply a threshold to.
+    :return: Lost of cv2 image objects with the thresholding applied.
+    """
+    thresholds = []
+    for image in images:
+        threshold = augmentor.threshold(image, 2, 150)
+        thresholds.append(threshold)
+
+    return thresholds
+
+
 #####################################
 # Helper formatting methods
 #####################################
@@ -500,6 +515,18 @@ def gauss_1d(images, show=True):
         show_images(images)
 
 
+def threshold(images, show=True):
+    announcment("threshold")
+    images = test_threshold(images)
+    if show:
+        size = len(images)
+        for i, image in enumerate(images):
+            plt.subplot(1, size, i + 1)
+            plt.imshow(image)
+
+        plt.show()
+
+
 if __name__ == '__main__':
     paths = get_images("./images")
     images = load_images(paths)
@@ -526,4 +553,5 @@ if __name__ == '__main__':
     # mesh(images)
     # distort(images)
     # gauss_2d(images)
-    gauss_1d(images)
+    # gauss_1d(images)
+    threshold(images)

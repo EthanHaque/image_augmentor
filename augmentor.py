@@ -438,6 +438,7 @@ def threshold(input_image, standard_deviation, threshold):
 
     return thresholded
 
+
 def save_image(input_image, filepath):
     """
     Saves an image to the given filepath
@@ -447,7 +448,6 @@ def save_image(input_image, filepath):
     :return:
     """
     cv2.imwrite(filepath, input_image)
-
 
 
 if __name__ == '__main__':
