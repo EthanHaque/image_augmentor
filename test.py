@@ -139,6 +139,36 @@ def test_affine_transformation(images):
     return transformations
 
 
+def test_translate(images):
+    """
+    Test method for the translate method of the augmentor class.
+
+    :param images: The images to transform.
+    :return: List of cv2 image objects with the translation.
+    """
+    transformations = []
+    for image in images:
+        transformed = augmentor.translate(image, 200, 200)
+        transformations.append(transformed)
+
+    return transformations
+
+
+def test_rotate(images):
+    """
+    Test method for the rotate method of the augmentor class.
+
+    :param images: The images to transform.
+    :return: List of cv2 image objects with the rotation
+    """
+    transformations = []
+    for image in images:
+        transformed = augmentor.rotate(image, 10)
+        transformations.append(transformed)
+
+    return transformations
+
+
 #####################################
 # Helper formatting methods
 #####################################
@@ -226,6 +256,20 @@ def affine(images, show=True):
         show_images(images)
 
 
+def translate(images, show=True):
+    announcment("translate")
+    images = test_translate(images)
+    if show:
+        show_images(images)
+
+
+def rotate(images, show=True):
+    announcment("rotate")
+    images = test_rotate(images)
+    if show:
+        show_images(images)
+
+
 if __name__ == '__main__':
     paths = get_images("./images")
     images = load_images(paths)
@@ -240,4 +284,6 @@ if __name__ == '__main__':
     # warp(images)
     # horizontal(images)
     # vertical(images)
-    affine(images)
+    # affine(images)
+    # translate(images)
+    # rotate(images)
