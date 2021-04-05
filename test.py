@@ -214,6 +214,21 @@ def test_median_blur(images):
     return transformations
 
 
+def test_gaussian_blur(images):
+    """
+    Test method for the gaussian_blur method of the augmentor class.
+
+    :param images: The images to transform.
+    :return: List of cv2 image objects with the gaussian blur applied.
+    """
+    transformations = []
+    for image in images:
+        transformed = augmentor.gaussian_blur(image, 2, 2)
+        transformations.append(transformed)
+
+    return transformations
+
+
 #####################################
 # Helper formatting methods
 #####################################
@@ -335,6 +350,12 @@ def median_blur(images, show=True):
     if show:
         show_images(images)
 
+def gaussian_blur(images, show=True):
+    announcment("gaussian_blur")
+    images = test_gaussian_blur(images)
+    if show:
+        show_images(images)
+
 
 if __name__ == '__main__':
     paths = get_images("./images")
@@ -356,3 +377,4 @@ if __name__ == '__main__':
     # scale(images)
     # average_blur(images)
     # median_blur(images)
+    gaussian_blur(images)

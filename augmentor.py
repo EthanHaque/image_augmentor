@@ -265,7 +265,7 @@ def gaussian_blur(input_image, standard_deviation, strength):
     :param input_image: The image to blur.
     :param standard_deviation: The standard deviation for the normal distribution.
     :param strength: The size of the burring filter to apply to the image. The larger the matrix, the larger the
-    area sampled to blur per pixel.
+    area sampled to blur per pixel. Must be odd.
     :return: The image with the gaussian blur applied.
     """
     blurred = cv2.GaussianBlur(input_image, (strength, strength), standard_deviation)
