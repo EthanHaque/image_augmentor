@@ -159,7 +159,7 @@ def test_rotate(images):
     Test method for the rotate method of the augmentor class.
 
     :param images: The images to transform.
-    :return: List of cv2 image objects with the rotation
+    :return: List of cv2 image objects with the rotation.
     """
     transformations = []
     for image in images:
@@ -167,6 +167,23 @@ def test_rotate(images):
         transformations.append(transformed)
 
     return transformations
+
+
+def test_scale(images):
+    """
+    Test method for the scale method of the augmentor class.
+
+    :param images: The images to transform.
+    :return: List of cv2 image objects with the scaling.
+    """
+    transformations = []
+    for image in images:
+        transformed = augmentor.scale(image, 0.25, 0.25)
+        transformations.append(transformed)
+
+    return transformations
+
+
 
 
 #####################################
@@ -270,6 +287,13 @@ def rotate(images, show=True):
         show_images(images)
 
 
+def scale(images, show=True):
+    announcment("scale")
+    images = test_scale(images)
+    if show:
+        show_images(images)
+
+
 if __name__ == '__main__':
     paths = get_images("./images")
     images = load_images(paths)
@@ -287,3 +311,4 @@ if __name__ == '__main__':
     # affine(images)
     # translate(images)
     # rotate(images)
+    scale(images)
