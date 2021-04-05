@@ -66,7 +66,7 @@ def test_perspective_transformation(images):
     Test method for the perspective_transformation method of the augmentor class.
 
     :param images: list of images to transform.
-    :return: Images with a perspective transformation performed.
+    :return: List of cv2 image objects with a perspective transformation performed.
     """
     transformations = []
     kernel = np.array([[1, 0, 300], [0, 1, 150], [0, 0, 1]]).astype('float32')
@@ -82,7 +82,7 @@ def test_warp_corners(images):
     Test method for the warp_corners method of the augmentor class.
 
     :param images: The images to transform.
-    :return: Images with the corners warped.
+    :return: List of cv2 image objects with the corners warped.
     """
     transformations = []
     for image in images:
@@ -98,7 +98,7 @@ def test_horizontal_squeeze(images):
     Test method for the horizontal_squeeze method of the augmentor class.
 
     :param images: The images to transform.
-    :return: Images with the corners warped in the horizontal direction.
+    :return: List of cv2 image objects with the corners warped in the horizontal direction.
     """
     transformations = []
     for image in images:
@@ -113,7 +113,7 @@ def test_vertical_squeeze(images):
     Test method for the vertical_squeeze method of the augmentor class.
 
     :param images: The images to transform.
-    :return: Images with the corners warped in the vertical direction.
+    :return: List of cv2 image objects with the corners warped in the vertical direction.
     """
     transformations = []
     for image in images:
@@ -121,6 +121,15 @@ def test_vertical_squeeze(images):
         transformations.append(transformed)
 
     return transformations
+
+
+def test_affine_transformation(images):
+    """
+    Test method for the affine_transformation method of the augmentor class.
+
+    :param images: The images to transform.
+    :return: Images with the affine transformation
+    """
 
 
 #####################################
