@@ -570,4 +570,4 @@ if __name__ == '__main__':
     # gauss_2d(images)
     # gauss_1d(images)
     # threshold(images)
-    save(images)
+    # save(images)
