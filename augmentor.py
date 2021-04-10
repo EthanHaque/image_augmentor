@@ -423,6 +423,10 @@ def gaussian_noise_distortion_1d(input_image, standard_deviation, strength):
     return remapped
 
 
+def generate_fold_mesh(input_image):
+    rows, cols = input_image.shape[0:2]
+
+
 def threshold(input_image, standard_deviation, threshold):
     """
     Applies a gaussian filter to an image with thresholding. Deep fries image.
@@ -438,6 +442,7 @@ def threshold(input_image, standard_deviation, threshold):
 
     return thresholded
 
+def
 
 def save_image(input_image, filepath):
     """
