@@ -104,7 +104,8 @@ def warp_corners(input_image, x_scale_factors, y_scale_factors):
     dst_points = np.float32([p1, p2, p3, p4])
 
     projective_matrix = cv2.getPerspectiveTransform(src_points, dst_points)
-    transformed_image = perspective_transformation(input_image, projective_matrix)
+    transformed_image = perspective_transformation(
+        input_image, projective_matrix)
 
     return transformed_image
 
@@ -268,7 +269,8 @@ def gaussian_blur(input_image, standard_deviation, strength):
     area sampled to blur per pixel. Must be odd.
     :return: The image with the gaussian blur applied.
     """
-    blurred = cv2.GaussianBlur(input_image, (strength, strength), standard_deviation)
+    blurred = cv2.GaussianBlur(
+        input_image, (strength, strength), standard_deviation)
 
     return blurred
 
@@ -421,10 +423,6 @@ def gaussian_noise_distortion_1d(input_image, standard_deviation, strength):
     remapped = distort_with_noise(input_image, gauss)
 
     return remapped
-
-
-def generate_fold_mesh(input_image):
-    rows, cols = input_image.shape[0:2]
 
 
 def threshold(input_image, standard_deviation, threshold):
