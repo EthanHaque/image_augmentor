@@ -442,7 +442,6 @@ def threshold(input_image, standard_deviation, threshold):
 
     return thresholded
 
-def
 
 def save_image(input_image, filepath):
     """
